@@ -1,6 +1,6 @@
 // CHALLENGE 1
 function createFunction() {
-  return function hello() {
+  return function () {
     console.log("hello");
   };
 }
@@ -102,13 +102,18 @@ const called = function () {
   console.log("hello");
 };
 const afterCalled = after(3, called);
-afterCalled(); // => nothing is printed
-afterCalled(); // => nothing is printed
-afterCalled(); // => 'hello' is printed
+// afterCalled(); // => nothing is printed
+// afterCalled(); // => nothing is printed
+// afterCalled(); // => 'hello' is printed
 // afterCalled();
 
 // CHALLENGE 6
-function delay(func, wait) {}
+function delay(func, wait) {
+  setTimeout(func, wait);
+}
+
+// const testDelay = createFunction();
+// delay(testDelay, 1000);
 
 // CHALLENGE 7
 function rollCall(names) {}
