@@ -1,5 +1,3 @@
-// PROBLEMS: csbin.io/callbacks
-
 // Challenge 1
 function addTwo(num) {
   return num + 2;
