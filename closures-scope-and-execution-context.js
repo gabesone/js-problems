@@ -148,16 +148,22 @@ function saveOutput(func, magicWord) {
 }
 
 // /*** Uncomment these to check your work! ***/
-const multiplyBy2 = function (num) {
-  return num * 2;
-};
-const multBy2AndLog = saveOutput(multiplyBy2, "boo");
-console.log(multBy2AndLog(2)); // => should log 4
-console.log(multBy2AndLog(9)); // => should log 18
-console.log(multBy2AndLog("boo")); // => should log { 2: 4, 9: 18 }
+// const multiplyBy2 = function(num) { return num * 2; };
+// const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
+// console.log(multBy2AndLog(2)); // => should log 4
+// console.log(multBy2AndLog(9)); // => should log 18
+// console.log(multBy2AndLog('boo')); // => should log { 2: 4, 9: 18 }
 
 // CHALLENGE 9
-function cycleIterator(array) {}
+function cycleIterator(array) {
+  let counter = 0;
+  return function () {
+    if (counter == array.length) {
+      counter = 0;
+    }
+    return array[counter++];
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
 // const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
