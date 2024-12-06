@@ -181,19 +181,25 @@ function defineFirstArg(func, arg) {
 }
 
 // /*** Uncomment these to check your work! ***/
-const subtract = function (big, small) {
-  return big - small;
-};
-const subFrom20 = defineFirstArg(subtract, 20);
-console.log(subFrom20(5)); // => should log 15
+// const subtract = function(big, small) { return big - small; };
+// const subFrom20 = defineFirstArg(subtract, 20);
+// console.log(subFrom20(5)); // => should log 15
 
 // CHALLENGE 11
-function dateStamp(func) {}
+function dateStamp(func) {
+  return function (...args) {
+    let newObj = {};
+    let today = new Date();
+    newObj["date"] = today.toDateString();
+    newObj["output"] = func(...args);
+    return newObj;
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
-// const stampedMultBy2 = dateStamp(n => n * 2);
-// console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
-// console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
+const stampedMultBy2 = dateStamp((n) => n * 2);
+console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
+console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
 
 // CHALLENGE 12
 function censor() {}
