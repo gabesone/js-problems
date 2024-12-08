@@ -197,18 +197,31 @@ function dateStamp(func) {
 }
 
 // /*** Uncomment these to check your work! ***/
-const stampedMultBy2 = dateStamp((n) => n * 2);
-console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
-console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
+// const stampedMultBy2 = dateStamp(n => n * 2);
+// console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
+// console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
 
 // CHALLENGE 12
-function censor() {}
+function censor() {
+  let newObj = {};
+  return function (...args) {
+    if (args.length == 2) {
+      newObj[args[0]] = args[1];
+    }
+    if (args.length == 1) {
+      for (const key in newObj) {
+        args[0] = args[0].replaceAll(key, newObj[key]);
+      }
+    }
+    return args;
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
-// const changeScene = censor();
-// changeScene('dogs', 'cats');
-// changeScene('quick', 'slow');
-// console.log(changeScene('The quick, brown fox jumps over the lazy dogs.')); // => should log 'The slow, brown fox jumps over the lazy cats.'
+const changeScene = censor();
+changeScene("dogs", "cats");
+changeScene("quick", "slow");
+console.log(changeScene("The quick, brown fox jumps over the lazy dogs.")); // => should log 'The slow, brown fox jumps over the lazy cats.'
 
 // CHALLENGE 13
 function createSecretHolder(secret) {}
