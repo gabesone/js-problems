@@ -218,33 +218,62 @@ function censor() {
 }
 
 // /*** Uncomment these to check your work! ***/
-const changeScene = censor();
-changeScene("dogs", "cats");
-changeScene("quick", "slow");
-console.log(changeScene("The quick, brown fox jumps over the lazy dogs.")); // => should log 'The slow, brown fox jumps over the lazy cats.'
+// const changeScene = censor();
+// changeScene('dogs', 'cats');
+// changeScene('quick', 'slow');
+// console.log(changeScene('The quick, brown fox jumps over the lazy dogs.')); // => should log 'The slow, brown fox jumps over the lazy cats.'
 
 // CHALLENGE 13
-function createSecretHolder(secret) {}
+function createSecretHolder(secret) {
+  let _secretValue = secret;
+  let newObj = {
+    setSecret: function (v) {
+      _secretValue = v;
+    },
+    getSecret: function () {
+      console.log(_secretValue);
+      return _secretValue;
+    },
+  };
+  return newObj;
+}
 
 // /*** Uncomment these to check your work! ***/
-// obj = createSecretHolder(5)
+// let obj = createSecretHolder(5)
 // obj.getSecret() // => returns 5
 // obj.setSecret(2)
 // obj.getSecret() // => returns 2
 
 // CHALLENGE 14
-function callTimes() {}
+function callTimes() {
+  let called = 0;
+  return function () {
+    return ++called;
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
-// let myNewFunc1 = callTimes();
-// let myNewFunc2 = callTimes();
-// myNewFunc1(); // => 1
-// myNewFunc1(); // => 2
-// myNewFunc2(); // => 1
-// myNewFunc2(); // => 2
+let myNewFunc1 = callTimes();
+let myNewFunc2 = callTimes();
+// console.log(myNewFunc1()); // => 1
+// console.log(myNewFunc1()); // => 2
+// console.log(myNewFunc2()); // => 1
+// console.log(myNewFunc2()); // => 2
 
 // CHALLENGE 15
-function roulette(num) {}
+function roulette(num) {
+  let spin = 0;
+  return function () {
+    ++spin;
+    if (spin < num) {
+      return "spin";
+    } else if (spin == num) {
+      return "win";
+    } else {
+      return "pick a number to play again";
+    }
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
 // const play = roulette(3);
@@ -255,7 +284,18 @@ function roulette(num) {}
 // console.log(play()); // => should log 'pick a number to play again'
 
 // CHALLENGE 16
-function average() {}
+function average() {
+  let numbers = [];
+  return function (value) {
+    if (value !== "" && value !== undefined) {
+      numbers.push(value);
+    } else if (numbers.length == 0) {
+      return 0;
+    }
+    let currentAverage = numbers.reduce((sum, num) => sum + num, 0);
+    return currentAverage / numbers.length;
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
 // const avgSoFar = average();
