@@ -307,7 +307,16 @@ function average() {
 // console.log(avgSoFar()); // => should log 8
 
 // CHALLENGE 17
-function makeFuncTester(arrOfTests) {}
+function makeFuncTester(arrOfTests) {
+  return function (callback) {
+    for (let [firstI, secondI] of arrOfTests) {
+      if (callback(firstI) == secondI) {
+        return true;
+      }
+    }
+    return false;
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
 // const capLastTestCases = [];
