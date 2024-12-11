@@ -330,7 +330,22 @@ function makeFuncTester(arrOfTests) {
 // console.log(shouldCapitalizeLast(capLastAttempt2)); // => should log true
 
 // CHALLENGE 18
-function makeHistory(limit) {}
+function makeHistory(limit) {
+  var history = [];
+  return function (str) {
+    if (str == "undo") {
+      if (history.length > 0) {
+        return history.pop() + " undone";
+      } else {
+        return "nothing to undo";
+      }
+    } else {
+      if (history.length === limit) history.shift();
+      history.push(str);
+      return str + " done";
+    }
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
 // const myActions = makeHistory(2);
