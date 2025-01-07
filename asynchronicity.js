@@ -105,6 +105,11 @@ const countLogger = delayCounter(3, 1000);
 
 function promised(val) {
   // ADD CODE HERE
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(val);
+    }, 2000);
+  });
 }
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
@@ -117,18 +122,42 @@ function promised(val) {
 class SecondClock {
   constructor(cb) {
     // ADD CODE HERE
+    this.cb = cb;
+    this.value = 0;
+    this.id = null;
   }
   // ADD METHODS HERE
+
+  start(val) {
+    this.id = setInterval(() => {
+      if (this.value < 1) {
+        this.clear();
+      }
+      this.cb(this.value++ % 61);
+      if (this.value > 60) {
+        this.clear();
+      }
+    }, 1000);
+  }
+  clear() {
+    this.value = 1;
+  }
+
+  reset() {
+    clearInterval(this.id);
+  }
 }
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
-// const clock = new SecondClock((val) => { console.log(val) });
-// console.log("Started Clock.");
-// clock.start();
-// setTimeout(() => {
-//     clock.reset();
-//     console.log("Stopped Clock after 6 seconds.");
-// }, 6000);
+const clock = new SecondClock((val) => {
+  console.log(val);
+});
+console.log("Started Clock.");
+clock.start();
+setTimeout(() => {
+  clock.reset();
+  console.log("Stopped Clock after 6 seconds.");
+}, 6000);
 
 /* CHALLENGE 10 */
 
